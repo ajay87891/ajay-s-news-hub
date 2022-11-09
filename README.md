@@ -1,4 +1,4 @@
-# Getting Started with Create React App
+# News Website Created with React and Tailwind CSS using NewsApi
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
