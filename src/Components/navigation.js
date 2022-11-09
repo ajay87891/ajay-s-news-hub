@@ -4,9 +4,44 @@ import { Navbar } from "flowbite-react";
 import icon from '../icons/News.svg';
 
 export class Navigation extends Component {
+  // constructor(){
+  //   super();
+  //   this.state ={
+  //     dark: true
+  //   }
+
+  // }
   //   static propTypes = {
 
   //   }
+  
+  // changeTheme = ()=>{
+  //   // let theme = document.getElementById("mainbody");
+  //   if(this.state.dark){
+  //     // theme.classList.add("dark");
+  //     document.body.classList.add('dark');
+  //     this.setState({
+  //       dark: false
+  //     })
+  //     // theme.classList.add("bg-slate-800")
+  //     document.body.classList.add('bg-slate-800');
+     
+     
+  //   }
+  //   else{
+  //     // theme.classList.remove("dark");
+  //     // theme.classList.remove("bg-slate-800");
+  //     document.body.classList.remove('dark');
+  //     document.body.classList.remove('bg-slate-800');
+  //     this.setState({
+  //       dark: true
+  //     })
+      
+     
+      
+  //   }
+
+  //  }
 
   render() {
     return (
@@ -31,7 +66,9 @@ export class Navigation extends Component {
             <Navbar.Link href="/navbars">Services</Navbar.Link>
             <Navbar.Link href="/navbars">Pricing</Navbar.Link>
           </Navbar.Collapse>
+          
         </Navbar>
+        
       </div>
     );
   }
