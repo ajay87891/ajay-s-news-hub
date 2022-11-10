@@ -2,6 +2,7 @@ import React, { Component } from "react";
 // import PropTypes from 'prop-types'
 import { Navbar } from "flowbite-react";
 import icon from '../icons/News.svg';
+import icondark from '../icons/NewsDark.svg'
 
 export class Navigation extends Component {
   constructor(){
@@ -36,11 +37,18 @@ export class Navigation extends Component {
       <div>
         <Navbar fluid={true} rounded={true}>
           <Navbar.Brand href="https://flowbite.com/">
+            <span>
             <img
               src={icon}
-              className="mr-3 h-6 sm:h-9"
-              alt="Flowbite Logo"
-            />
+              className="mr-3 h-6 sm:h-9 dark:hidden"
+              alt="News Logo"
+            /></span>
+            <span>
+            <img
+              src={icondark}
+              className="hidden mr-3 h-6 sm:h-9 dark:inline"
+              alt="News Logo"
+            /></span>
             <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
               Ajay's News Hub
             </span>
