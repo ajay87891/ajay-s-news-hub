@@ -3,7 +3,7 @@ import React, { Component } from "react";
 export class NewsItem extends Component {
    
   render() {
-    let { title, description,imgurl, newsurl } = this.props;
+    let { title, description,imgurl, newsurl, author, date } = this.props;
     return (
       <div className="mt-4 mx-2">
         <div className="max-w-xs bg-white rounded-lg border border-gray-200 shadow-lg dark:bg-gray-800 dark:border-gray-700 md:hover:max-w-[21rem] ease-in duration-300 hover:bg-gray-200 ">
@@ -23,6 +23,7 @@ export class NewsItem extends Component {
             <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
               {description}
             </p>
+            <p className="text-xs py-3 text-slate-800 dark:text-slate-300">By {author} on {new Date(date).toDateString()}</p>
             <a
               href={newsurl} target="_blank" rel="noreferrer"
               className="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"

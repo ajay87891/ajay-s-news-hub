@@ -1,5 +1,7 @@
+import { Spinner } from "flowbite-react";
 import React, { Component } from "react";
 import NewsItem from "./NewsItem";
+
 
 export class News extends Component {
   constructor() {
@@ -15,14 +17,15 @@ export class News extends Component {
 
   async componentDidMount() {
     let url =
-      `https://newsapi.org/v2/top-headlines?country=in&apiKey=0f03cebe013543198abee230ab815999&page=1&pageSize=${this.props.pagesize}`;
-
+      `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=0f03cebe013543198abee230ab815999&page=1&pageSize=${this.props.pagesize}`;
+      this.setState({loading: true})
     let data = await fetch(url);
     let parsedData = await data.json();
 
     this.setState({
       articles: parsedData.articles,
-      totalResults: parsedData.totalResults
+      totalResults: parsedData.totalResults,
+      loading: false
     });
   }
    handelnextclick = async ()=>{
@@ -36,13 +39,14 @@ export class News extends Component {
       page: this.state.page+1
     })
     let url =
-      `https://newsapi.org/v2/top-headlines?country=in&apiKey=0f03cebe013543198abee230ab815999&page=${this.state.page+1}&pageSize=${this.props.pagesize}`;
-
+      `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=0f03cebe013543198abee230ab815999&page=${this.state.page+1}&pageSize=${this.props.pagesize}`;
+    this.setState({loading: true})
     let data = await fetch(url);
     let parsedData = await data.json();
 
     this.setState({
       articles: parsedData.articles,
+      loading:false
     });
   }
   }
@@ -52,13 +56,15 @@ export class News extends Component {
       page: this.state.page-1
     })
     let url =
-      `https://newsapi.org/v2/top-headlines?country=in&apiKey=0f03cebe013543198abee230ab815999&page=${this.state.page-1}&pageSize=${this.props.pagesize}`;
+      `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=0f03cebe013543198abee230ab815999&page=${this.state.page-1}&pageSize=${this.props.pagesize}`;
+      this.setState({loading: true})
 
     let data = await fetch(url);
     let parsedData = await data.json();
 
     this.setState({
       articles: parsedData.articles,
+      loading: false
     });
 
 
@@ -68,14 +74,15 @@ export class News extends Component {
   render() {
     return (
       <>
-        <div className="flex justify-center">
+        <div className="flex items-center flex-col">
           <h1 className="text-slate-800 text-6xl mb-4 font-serif dark:text-slate-300">
             Today's Headlines
           </h1>
+          {this.state.loading && <Spinner/>}
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2  md:grid-cols-3 auto-cols-max ">
-          {this.state.articles.map((element) => {
+          {!this.state.loading && this.state.articles.map((element) => {
             return (
               <NewsItem
                 key={element.url}
@@ -83,6 +90,8 @@ export class News extends Component {
                 description={element.description}
                 imgurl={element.urlToImage}
                 newsurl={element.url}
+                author = {element.author}
+                date = {element.publishedAt}
               />
             );
           })}
