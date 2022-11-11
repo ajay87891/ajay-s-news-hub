@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import image from "../icons/ImageNotFound.png"
 
 export class NewsItem extends Component {
    
@@ -7,15 +8,15 @@ export class NewsItem extends Component {
     return (
       <div className="mt-4 mx-2">
         <div className="max-w-xs bg-white rounded-lg border border-gray-200 shadow-lg dark:bg-gray-800 dark:border-gray-700 md:hover:max-w-[21rem] ease-in duration-300 hover:bg-gray-200 ">
-          <a href="/newsdetails/">
+          <a href={newsurl}>
             <img
               className="rounded-t-lg "
-              src={imgurl}
+              src={imgurl?imgurl:image}
               alt=""
             />
           </a>
           <div className="p-5 max-w-[318px]">
-            <a href="/newsdetails/" target="_blank" rel="noreferrer">
+            <a href={newsurl} target="_blank" rel="noreferrer">
               <h5 className="mb-2 text-2xl font-bold tracking-tight  text-gray-900 dark:text-white">
                 {title}
               </h5>

@@ -70,8 +70,8 @@ export class News extends Component {
               return (
                 <NewsItem
                   key={element.url}
-                  title={element.title}
-                  description={element.description}
+                  title={element.title?element.title.slice(0,45):""}
+                  description={element.description?element.description.slice(0,60)+"...":""}
                   imgurl={element.urlToImage}
                   newsurl={element.url}
                   author={element.author}
