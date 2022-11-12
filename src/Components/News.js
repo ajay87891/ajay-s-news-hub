@@ -1,6 +1,8 @@
 import { Spinner } from "flowbite-react";
 import React, { Component } from "react";
 import NewsItem from "./NewsItem";
+import InfiniteScroll from "react-infinite-scroll-component";
+import noImage from "../icons/ImageNotFound.png"
 
 export class News extends Component {
   constructor(props) {
@@ -19,40 +21,65 @@ export class News extends Component {
   }
   
   async UpdateNews() {
-    const url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=0f03cebe013543198abee230ab815999&page=${this.state.page}&pageSize=${this.props.pagesize}`;
+    this.props.setProgress(10);
+    const url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apiKey}&page=${this.state.page}&pageSize=${this.props.pagesize}`;
     this.setState({ loading: true });
     let data = await fetch(url);
+    this.props.setProgress(30)
     let parsedData = await data.json();
-    console.log("upsated")
+    
+    
 
     this.setState({
       articles: parsedData.articles,
       totalResults: parsedData.totalResults,
       loading: false,
     });
+    this.props.setProgress(100)
   }
 
   async componentDidMount() {
     this.UpdateNews();
+    
+    
   }
-  handelnextclick = async () => {
-    if (
-      this.state.page + 1 >
-      Math.ceil(this.state.totalResults / this.props.pagesize)
-    ) {
-    } else {
-      this.setState({
-        page: this.state.page + 1,
-      });
-      this.UpdateNews();
-    }
-  };
-  handelprevclick = async () => {
+  // handelnextclick = async () => {
+  //   if (
+  //     this.state.page + 1 >
+  //     Math.ceil(this.state.totalResults / this.props.pagesize)
+  //   ) {
+  //   } else {
+  //     this.setState({
+  //       page: this.state.page + 1,
+  //     });
+  //     this.UpdateNews();
+  //   }
+  // };
+  // handelprevclick = async () => {
+  //   this.setState({
+  //     page: this.state.page - 1,
+  //   });
+  //   this.UpdateNews();
+  // };
+  fetchMoreData = async()=>{
     this.setState({
-      page: this.state.page - 1,
+      page: this.state.page + 1
+    })
+    const url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apiKey}&page=${this.state.page}&pageSize=${this.props.pagesize}`;
+    this.setState({ loading: true });
+    let data = await fetch(url);
+    let parsedData = await data.json();
+    // console.log("upsated")
+
+
+    this.setState({
+      articles: this.state.articles.concat(parsedData.articles),
+     
+      loading: false,
     });
-    this.UpdateNews();
-  };
+
+  }
+  
 
   render() {
     return (
@@ -64,22 +91,46 @@ export class News extends Component {
           {this.state.loading && <Spinner />}
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2  md:grid-cols-3 auto-cols-max ">
-          {!this.state.loading &&
+        
+
+
+        <InfiniteScroll 
+          
+          dataLength={this.state.articles.length}
+          next={this.fetchMoreData}
+          hasMore={this.state.articles.length !== this.state.totalResults}
+          loader={<Spinner/>}
+          height={"90vh"}
+          
+        >
+          
+          
+          
+          <div className="grid grid-cols-1 sm:grid-cols-2  md:grid-cols-3  xl:grid-cols-5  auto-cols-max mx-auto ">
+            
+          {
             this.state.articles.map((element) => {
               return (
+                 
                 <NewsItem
-                  key={element.url}
+                  key={Math.random(1,10000)}
                   title={element.title?element.title.slice(0,45):""}
                   description={element.description?element.description.slice(0,60)+"...":""}
-                  imgurl={element.urlToImage}
+                  imgurl={element.urlToImage?element.urlToImage:noImage}
                   newsurl={element.url}
                   author={element.author}
                   date={element.publishedAt}
                 />
               );
             })}
-        </div>
+            </div>
+            
+            
+            
+            
+            
+            </InfiniteScroll>
+{/*         
         <hr className="my-7 text-slate-800 dark:text-slate-500 shadow-md rounded mx-4"></hr>
         <div className="flex justify-between mx-20 sm:mx-32 md:mx-80 my-8">
           <button
@@ -126,7 +177,7 @@ export class News extends Component {
               ></path>
             </svg>
           </button>
-        </div>
+        </div> */}
       </>
     );
   }
