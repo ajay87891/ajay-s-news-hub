@@ -13,6 +13,7 @@ export class News extends Component {
       loading: false,
       page: 1,
       totalResults: 0,
+      
     };
     document.title = `${this.capitalizeFirstLetter(this.props.category)} News`
   }
@@ -20,50 +21,33 @@ export class News extends Component {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
   
-  async UpdateNews() {
+  
+  async componentDidMount() {
+    
+
+    
+
     this.props.setProgress(10);
     const url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apiKey}&page=${this.state.page}&pageSize=${this.props.pagesize}`;
     this.setState({ loading: true });
     let data = await fetch(url);
     this.props.setProgress(30)
     let parsedData = await data.json();
-    
-    
-
-    this.setState({
+     this.setState({
       articles: parsedData.articles,
       totalResults: parsedData.totalResults,
       loading: false,
+      
     });
     this.props.setProgress(100)
-  }
-
-  async componentDidMount() {
-    this.UpdateNews();
+    console.log("l")
     
-    
+  
   }
-  // handelnextclick = async () => {
-  //   if (
-  //     this.state.page + 1 >
-  //     Math.ceil(this.state.totalResults / this.props.pagesize)
-  //   ) {
-  //   } else {
-  //     this.setState({
-  //       page: this.state.page + 1,
-  //     });
-  //     this.UpdateNews();
-  //   }
-  // };
-  // handelprevclick = async () => {
-  //   this.setState({
-  //     page: this.state.page - 1,
-  //   });
-  //   this.UpdateNews();
-  // };
+ 
   fetchMoreData = async()=>{
     this.setState({
-      page: this.state.page + 1
+      page: this.state.page +1
     })
     const url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apiKey}&page=${this.state.page}&pageSize=${this.props.pagesize}`;
     this.setState({ loading: true });
@@ -100,7 +84,7 @@ export class News extends Component {
           next={this.fetchMoreData}
           hasMore={this.state.articles.length !== this.state.totalResults}
           loader={<Spinner/>}
-          height={"90vh"}
+          
           
         >
           
