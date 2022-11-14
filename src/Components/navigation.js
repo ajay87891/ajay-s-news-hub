@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, {  useState } from "react";
 // import PropTypes from 'prop-types'
 // import { Navbar } from "flowbite-react";
 import icon from "../icons/News.svg";
@@ -6,63 +6,53 @@ import icondark from "../icons/NewsDark.svg";
 import { NavLink } from "react-router-dom";
 import { Link } from "react-router-dom";
 
-export class Navigation extends Component {
-  constructor() {
-    super();
-    this.state = {
-      dark: true,
-      expand: false,
-    };
-  }
-  activeLink =
+const Navigation = ()=> {
+  
+    
+    const [dark, setDark] = useState(true)
+    const [expand, setExpand] = useState(false)
+
+  
+  const activeLink =
     "block py-2 pr-4 pl-3  rounded  md:p-0 md:bg-transparent text-white bg-blue-700 md:text-blue-700 dark:text-white";
-  inactiveLink =
+  const inactiveLink =
     " block py-2 pr-4 pl-3 md:p-0 ease-linear duration-500 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700  dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent ";
-  // const activeString = `"md:bg-transparent","text-white","bg-blue-700","md:text-blue-700","dark:text-white"`
-  changeTheme = () => {
-    if (this.state.dark) {
+ 
+  const changeTheme = () => {
+    if (dark) {
       document.body.classList.add("dark");
-      this.setState({
-        dark: false,
-      });
+      setDark(false);
 
       document.body.classList.add("bg-slate-800");
     } else {
       document.body.classList.remove("dark");
       document.body.classList.remove("bg-slate-800");
-      this.setState({
-        dark: true,
-      });
+      setDark(true);
     }
   };
-  handelNavbutton = () => {
+  const handelNavbutton = () => {
     // let btn = document.getElementById("expand");
     let btn = document.querySelector("#expand");
 
-    if (this.state.expand) {
+    if (expand) {
       btn.classList.add("hidden");
 
-      this.setState({
-        expand: false,
-      });
+      
+      setExpand(false);
     } else {
       btn.classList.remove("hidden");
       // setExpand(true)
-      this.setState({
-        expand: true,
-      });
+      setExpand(true);
     }
   };
-  dismissNavLink = () => {
+  const dismissNavLink = () => {
     // let btn = document.getElementById("expand");
     let btn = document.querySelector("#expand");
     btn.classList.add("hidden");
-    this.setState({
-      expand: false,
-    });
+    setExpand(false);
   };
 
-  render() {
+  
     return (
       <div>
         
@@ -89,7 +79,7 @@ export class Navigation extends Component {
                 </span>
               </Link>
               <button
-                onClick={this.handelNavbutton}
+                onClick={handelNavbutton}
                 type="button"
                 className="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600  ease-linear duration-500"
                 aria-controls="navbar-default"
@@ -117,10 +107,10 @@ export class Navigation extends Component {
                     <NavLink
                       to="/"
                       className={({ isActive }) =>
-                        isActive ? this.activeLink : this.inactiveLink
+                        isActive ? activeLink : inactiveLink
                       }
                       aria-current="page"
-                      onClick={this.dismissNavLink}
+                      onClick={dismissNavLink}
                     >
                       Home
                     </NavLink>
@@ -129,10 +119,10 @@ export class Navigation extends Component {
                     <NavLink
                       to="/entertainment"
                       className={({ isActive }) =>
-                        isActive ? this.activeLink : this.inactiveLink
+                        isActive ? activeLink : inactiveLink
                       }
                       aria-current="page"
-                      onClick={this.dismissNavLink}
+                      onClick={dismissNavLink}
                     >
                       Entertainment
                     </NavLink>
@@ -141,9 +131,9 @@ export class Navigation extends Component {
                     <NavLink
                       to="/science"
                       className={({ isActive }) =>
-                        isActive ? this.activeLink : this.inactiveLink
+                        isActive ? activeLink : inactiveLink
                       }
-                      onClick={this.dismissNavLink}
+                      onClick={dismissNavLink}
                     >
                       Science
                     </NavLink>
@@ -153,9 +143,9 @@ export class Navigation extends Component {
                     <NavLink
                       to="/business"
                       className={({ isActive }) =>
-                        isActive ? this.activeLink : this.inactiveLink
+                        isActive ? activeLink : inactiveLink
                       }
-                      onClick={this.dismissNavLink}
+                      onClick={dismissNavLink}
                     >
                       Business
                     </NavLink>
@@ -164,9 +154,9 @@ export class Navigation extends Component {
                     <NavLink
                       to="/health"
                       className={({ isActive }) =>
-                        isActive ? this.activeLink : this.inactiveLink
+                        isActive ? activeLink : inactiveLink
                       }
-                      onClick={this.dismissNavLink}
+                      onClick={dismissNavLink}
                     >
                       Health
                     </NavLink>
@@ -175,9 +165,9 @@ export class Navigation extends Component {
                     <NavLink
                       to="/sports"
                       className={({ isActive }) =>
-                        isActive ? this.activeLink : this.inactiveLink
+                        isActive ? activeLink : inactiveLink
                       }
-                      onClick={this.dismissNavLink}
+                      onClick={dismissNavLink}
                     >
                       Sports
                     </NavLink>
@@ -186,9 +176,9 @@ export class Navigation extends Component {
                     <NavLink
                       to="/technology"
                       className={({ isActive }) =>
-                        isActive ? this.activeLink : this.inactiveLink
+                        isActive ? activeLink : inactiveLink
                       }
-                      onClick={this.dismissNavLink}
+                      onClick={dismissNavLink}
                     >
                       Technology
                     </NavLink>
@@ -197,7 +187,7 @@ export class Navigation extends Component {
               </div>
             </div>
             <button
-              onClick={this.changeTheme}
+              onClick={changeTheme}
               className="inline-flex items-start mx-1 mt-2 md:items-center md:my-auto "
               type="button"
             >
@@ -245,7 +235,7 @@ export class Navigation extends Component {
         </nav>
       </div>
     );
-  }
+  
 }
 
 export default Navigation;

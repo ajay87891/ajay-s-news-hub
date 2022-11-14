@@ -1,10 +1,10 @@
-import React, { Component } from "react";
+import React from "react";
 import image from "../icons/ImageNotFound.png"
 
-export class NewsItem extends Component {
+const NewsItem = (props)=> {
    
-  render() {
-    let { title, description,imgurl, newsurl, author, date } = this.props;
+  
+    let { title, description,imgurl, newsurl, author, date } = props;
     return (
       <div className="mt-4 mx-auto px-4">
         <div className="max-w-xs bg-white rounded-lg border border-gray-200 shadow-lg dark:bg-gray-800 dark:border-gray-700 md:hover:max-w-[21rem] ease-in duration-300 hover:bg-gray-200  ">
@@ -48,7 +48,7 @@ export class NewsItem extends Component {
         </div>
       </div>
     );
-  }
+  
 }
 
 export default NewsItem;
