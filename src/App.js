@@ -19,7 +19,8 @@ export default class App extends Component {
     category: PropTypes.string,
   };
   // apiKey = process.env.REACT_APP_NEWS_API
-  apiKey= "0f03cebe013543198abee230ab815999"
+  // apiKey= "0f03cebe013543198abee230ab815999"
+  apiKey = "7448d9ab113940f09a93e3c61fa7bfa3"
 
   state={
     progress:0
