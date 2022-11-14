@@ -16,7 +16,7 @@ const Navigation = ()=> {
   const activeLink =
     "block py-2 pr-4 pl-3  rounded  md:p-0 md:bg-transparent text-white bg-blue-700 md:text-blue-700 dark:text-white";
   const inactiveLink =
-    " block py-2 pr-4 pl-3 md:p-0 ease-linear duration-500 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700  dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent ";
+    " block py-2 pr-4 pl-3 md:p-0 ease-linear duration-500 text-gray-700 rounded hover:bg-gray-300 hover:text-blue-800 md:hover:bg-transparent md:border-0 md:hover:text-blue-700  dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent";
  
   const changeTheme = () => {
     if (dark) {
@@ -56,7 +56,7 @@ const Navigation = ()=> {
     return (
       <div>
         
-        <nav className="bg-white border-gray-200  sm:px-4 py-2.5 rounded dark:bg-gray-900  ease-linear duration-500 ">
+        <nav className="bg-white/60 border-gray-200  sm:px-4 py-2.5 rounded-lg dark:bg-gray-900/60  ease-linear duration-500 fixed w-full mt-0 ml-0 backdrop-blur-xl z-10  shadow-md">
           <div className="flex">
             <div className="container flex flex-wrap justify-between items-center mx-auto">
               <Link to="/" className="flex items-center">
@@ -102,7 +102,7 @@ const Navigation = ()=> {
               </button>
 
               <div className="hidden w-full md:block md:w-auto" id="expand">
-                <ul className="flex flex-col p-4 mt-4 bg-gray-50 rounded-lg border border-gray-100 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700  ease-linear duration-500">
+                <ul className="flex flex-col p-4 mt-4 bg-gray-50/30 rounded-lg border border-gray-100 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white/0 dark:bg-gray-800/40 md:dark:bg-gray-900/0 dark:border-gray-700  ease-linear duration-500">
                   <li>
                     <NavLink
                       to="/"

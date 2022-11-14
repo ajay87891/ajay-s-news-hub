@@ -10,14 +10,16 @@ const News = (props) => {
   const [page, setpage] = useState(1);
   const [totalResult, setTotalResult] = useState(0);
 
-  // document.title = `${capitalizeFirstLetter(props.category)} News`
+  
 
   const capitalizeFirstLetter = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
   };
 
   useEffect(() => {
+    document.title = `${capitalizeFirstLetter(props.category)} News`
     updateNews();
+     // eslint-disable-next-line
   }, []);
 
   const updateNews = async () => {
@@ -34,8 +36,9 @@ const News = (props) => {
   };
 
   const fetchMoreData = async () => {
+    
+    const url = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=${props.apiKey}&page=${page+1}&pageSize=${props.pagesize}`;
     setpage(page + 1);
-    const url = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=${props.apiKey}&page=${page}&pageSize=${props.pagesize}`;
     setLoading(true);
     let data = await fetch(url);
     let parsedData = await data.json();
@@ -48,7 +51,7 @@ const News = (props) => {
   return (
     <>
       <div className="flex items-center flex-col">
-        <h1 className="text-slate-800 text-2xl mb-4 font-serif dark:text-slate-300">
+        <h1 className="text-slate-800 text-2xl  font-serif dark:text-slate-300 mt-20  md:mt-28 lg:mt-24 mb-4">
           Today's Headlines From {capitalizeFirstLetter(props.category)}
         </h1>
         {loading && <Spinner />}
@@ -64,8 +67,8 @@ const News = (props) => {
           {articles.map((element) => {
             return (
               <NewsItem
-                key={Math.random(1, 10000)}
-                title={element.title ? element.title.slice(0, 45) : ""}
+                key={element.url}
+                title={element.title?element.title.slice(0, 45) : ""}
                 description={
                   element.description
                     ? element.description.slice(0, 60) + "..."
