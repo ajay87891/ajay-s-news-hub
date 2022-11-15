@@ -3,12 +3,14 @@ import React, { useState, useEffect } from "react";
 import NewsItem from "./NewsItem";
 import InfiniteScroll from "react-infinite-scroll-component";
 import noImage from "../icons/ImageNotFound.png";
+import { useTranslation } from "react-i18next";
 
 const News = (props) => {
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
   const [page, setpage] = useState(1);
   const [totalResult, setTotalResult] = useState(0);
+  const {t} = useTranslation();
 
   
 
@@ -18,7 +20,7 @@ const News = (props) => {
 
   useEffect(() => {
     document.title = `${capitalizeFirstLetter(props.category)} News`
-    updateNews();
+    updateNews(t("country"));
      // eslint-disable-next-line
   }, []);
 
@@ -52,7 +54,7 @@ const News = (props) => {
     <>
       <div className="flex items-center flex-col">
         <h1 className="text-slate-800 text-2xl  font-serif dark:text-slate-300 mt-20  md:mt-28 lg:mt-24 mb-4">
-          Today's Headlines From {capitalizeFirstLetter(props.category)}
+          {t("greet.1")}  {capitalizeFirstLetter(props.category)}
         </h1>
         {loading && <Spinner />}
       </div>

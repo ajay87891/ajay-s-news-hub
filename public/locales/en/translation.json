@@ -1,0 +1,20 @@
+{
+    "Nav":{
+        "1":"Home",
+        "2": "Entertainment",
+        "3": "Science",
+        "4": "Business",
+        "5":"Health",
+        "6":"Sports",
+        "7":"Technology"
+    },
+    "lang":{
+        "1":"English",
+        "2": "日本語"},
+    "greet":{
+        "1":"Today's Headlines From",
+        "2":"Ajay's News Hub"
+        },
+    "country":"in"
+
+}

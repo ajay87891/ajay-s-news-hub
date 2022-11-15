@@ -6,19 +6,26 @@ import News from "./Components/News";
 import PropTypes from "prop-types";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import LoadingBar from "react-top-loading-bar";
+import { useTranslation } from "react-i18next";
+
 
 const App = (props) => {
+  const {t} = useTranslation();
   // apiKey = process.env.REACT_APP_NEWS_API
   const apiKey = "0f03cebe013543198abee230ab815999";
   // const apiKey = "7448d9ab113940f09a93e3c61fa7bfa3"
+ 
 
   const setProgress = (progress) => {
     setprogress(progress);
   };
   const [progress, setprogress] = useState(0);
+  // const [newsLang, setnewsLang] = useState('in');
+
+  
 
   return (
-    <div className="bg-slate-600/10">
+    <div className="bg-yellow-600/10">
       <Router>
         <Navigation />
         <LoadingBar color="#808080" progress={progress} height={3} />
@@ -32,8 +39,9 @@ const App = (props) => {
                 setProgress={setProgress}
                 key="business"
                 pagesize={props.pagesize}
-                country="in"
+                country={t("country")}
                 category="business"
+
               />
             }
           />
@@ -47,7 +55,7 @@ const App = (props) => {
                 setProgress={setProgress}
                 key="entertainment"
                 pagesize={props.pagesize}
-                country="in"
+                country={props.country}
                 category="entertainment"
               />
             }
@@ -62,7 +70,7 @@ const App = (props) => {
                 setProgress={setProgress}
                 key="general"
                 pagesize={props.pagesize}
-                country="in"
+                country={t("country")}
                 category="general"
               />
             }
@@ -77,7 +85,7 @@ const App = (props) => {
                 setProgress={setProgress}
                 key="health"
                 pagesize={props.pagesize}
-                country="in"
+                country={props.country}
                 category="health"
               />
             }
@@ -92,7 +100,7 @@ const App = (props) => {
                 setProgress={setProgress}
                 key="science"
                 pagesize={props.pagesize}
-                country="in"
+                country={props.country}
                 category="science"
               />
             }
@@ -106,7 +114,7 @@ const App = (props) => {
                 setProgress={setProgress}
                 key="sports"
                 pagesize={props.pagesize}
-                country="in"
+                country={props.country}
                 category="sports"
               />
             }
@@ -120,7 +128,7 @@ const App = (props) => {
                 setProgress={setProgress}
                 key="technology"
                 pagesize={props.pagesize}
-                country="in"
+                country={props.country}
                 category="technology"
               />
             }
@@ -133,7 +141,7 @@ const App = (props) => {
 export default App;
 
 App.defaultProps = {
-  country: "in",
+  country : "in",
   pagesize: 5,
   category: "general",
 };
