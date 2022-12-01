@@ -64,7 +64,7 @@ const News = (props) => {
         dataLength={articles.length}
         next={fetchMoreData}
         hasMore={articles.length !== totalResult}
-        loader={<h4>Loading...</h4>}
+        
           endMessage={
            <p className="text-slate-800 "> End</p>
           }
