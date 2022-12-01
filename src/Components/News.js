@@ -64,7 +64,10 @@ const News = (props) => {
         dataLength={articles.length}
         next={fetchMoreData}
         hasMore={articles.length !== totalResult}
-        loader={<Spinner />}
+        loader={<h4>Loading...</h4>}
+          endMessage={
+           <p className="text-slate-800 "> End</p>
+          }
       >
         <div className="grid grid-cols-1 sm:grid-cols-2  md:grid-cols-3  xl:grid-cols-5  auto-cols-max mx-auto ">
           {articles.map((element) => {
