@@ -6,8 +6,13 @@ const NewsItem = (props)=> {
   
     let { title, description,imgurl, newsurl, author, date } = props;
     return (
+<<<<<<< HEAD
       <div className="mt-4 mx-auto px-4">
         <div className="max-w-xs bg-white/5 rounded-lg border border-gray-200 shadow-lg dark:bg-gray-800 dark:border-gray-700 md:hover:max-w-[21rem] ease-in duration-300 hover:bg-gray-200 backdrop-blur-sm ">
+=======
+      <div className="mt-4 mx-4">
+        <div className="max-w-xs bg-white rounded-lg border border-gray-200 shadow-lg dark:bg-gray-800 dark:border-gray-700 md:hover:max-w-[21rem] ease-in duration-300 hover:bg-gray-200  ">
+>>>>>>> c41b3ce6a3a3d349dba0638ed2b24bb5a92bb4e9
           <a href={newsurl}>
             <img
               className="rounded-t-lg "
