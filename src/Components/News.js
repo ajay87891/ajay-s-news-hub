@@ -71,7 +71,7 @@ const News = (props) => {
   return (
     <>
       <div className="flex items-center flex-col">
-        <h1 className="text-slate-800 text-2xl  font-serif dark:text-slate-300 mt-20  md:mt-28 lg:mt-24 mb-4">
+        <h1 className="text-slate-800 text-2xl  font-serif dark:text-slate-300 mt-28  md:mt-28 lg:mt-24 mb-4">
           {t("greet.1")}  {capitalizeFirstLetter(props.category)}
         </h1>
         {loading && <Spinner />}
