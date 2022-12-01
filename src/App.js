@@ -55,7 +55,7 @@ const App = (props) => {
                 setProgress={setProgress}
                 key="entertainment"
                 pagesize={props.pagesize}
-                country={props.country}
+                country={t("country")}
                 category="entertainment"
               />
             }
@@ -85,7 +85,7 @@ const App = (props) => {
                 setProgress={setProgress}
                 key="health"
                 pagesize={props.pagesize}
-                country={props.country}
+                country={t("country")}
                 category="health"
               />
             }
@@ -100,7 +100,7 @@ const App = (props) => {
                 setProgress={setProgress}
                 key="science"
                 pagesize={props.pagesize}
-                country={props.country}
+                country={t("country")}
                 category="science"
               />
             }
@@ -114,7 +114,7 @@ const App = (props) => {
                 setProgress={setProgress}
                 key="sports"
                 pagesize={props.pagesize}
-                country={props.country}
+                country={t("country")}
                 category="sports"
               />
             }
@@ -128,7 +128,7 @@ const App = (props) => {
                 setProgress={setProgress}
                 key="technology"
                 pagesize={props.pagesize}
-                country={props.country}
+                country={t("country")}
                 category="technology"
               />
             }

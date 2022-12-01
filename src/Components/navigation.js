@@ -8,8 +8,11 @@ import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import uk from "../icons/uk.png";
 import japan from "../icons/japan.png";
+import {  useDispatch } from 'react-redux'
+import { remove,refresh } from '../redux/reducers/newsreducer'
 
 const Navigation = () => {
+  const dispatch =useDispatch()
   const { t, i18n } = useTranslation();
   const [dark, setDark] = useState(true);
   const [expand, setExpand] = useState(false);
@@ -22,10 +25,16 @@ const Navigation = () => {
     if(Lang === 'en'){
       setlang('English')
       setlangicon(uk)
+      dispatch(remove())
+      dispatch(refresh())
+
     }
     else{
       setlang('日本語')
       setlangicon(japan)
+      dispatch(remove())
+      dispatch(refresh())
+
     }
 
   }

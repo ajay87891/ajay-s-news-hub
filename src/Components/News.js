@@ -4,9 +4,16 @@ import NewsItem from "./NewsItem";
 import InfiniteScroll from "react-infinite-scroll-component";
 import noImage from "../icons/ImageNotFound.png";
 import { useTranslation } from "react-i18next";
+import { useSelector, useDispatch } from 'react-redux'
+import { add, addmore } from '../redux/reducers/newsreducer'
 
 const News = (props) => {
-  const [articles, setArticles] = useState([]);
+  const dispatch = useDispatch();
+  const articles = useSelector((state) => state.news.value.articles)
+  const articles1 = useSelector((state) => state.news.value.a)
+  console.log(articles);
+
+  // const [articles1, setArticles] = useState(true);
   const [loading, setLoading] = useState(true);
   const [page, setpage] = useState(1);
   const [totalResult, setTotalResult] = useState(0);
@@ -21,19 +28,28 @@ const News = (props) => {
   useEffect(() => {
     document.title = `${capitalizeFirstLetter(props.category)} News`
     updateNews(t("country"));
+    if(articles1){
+      
+    }
+
+
      // eslint-disable-next-line
-  }, []);
+  }, [articles1]);
+
 
   const updateNews = async () => {
     
     props.setProgress(10);
+
     const url = `https://agreeable-raincoat-worm.cyclic.app/api/getnews?country=${props.country}&category=${props.category}&apiKey=${props.apiKey}&page=${page}&pageSize=${props.pagesize}`;
     setLoading(true);
     let data = await fetch(url);
     props.setProgress(30);
     let parsedData = await data.json();
-    setArticles(parsedData.articles);
+    dispatch(add(parsedData.articles))
+    // setArticles(parsedData.articles);
     setTotalResult(parsedData.totalResults);
+    console.log(articles);
     setLoading(false);
     props.setProgress(100);
   };
@@ -48,7 +64,8 @@ const News = (props) => {
     // console.log("upsated")
 
     setLoading(false);
-    setArticles(articles.concat(parsedData.articles));
+    dispatch(addmore(parsedData.articles))
+    // setArticles(articles.concat(parsedData.articles));
   };
 
   return (
