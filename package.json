@@ -8,13 +8,9 @@
     "@testing-library/user-event": "^13.5.0",
     "flowbite": "^1.5.3",
     "flowbite-react": "^0.3.4",
-<<<<<<< HEAD
     "i18next": "^22.0.5",
     "i18next-browser-languagedetector": "^7.0.1",
     "i18next-http-backend": "^2.0.1",
-=======
-    "i18next": "^22.0.4",
->>>>>>> c41b3ce6a3a3d349dba0638ed2b24bb5a92bb4e9
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-i18next": "^12.0.0",

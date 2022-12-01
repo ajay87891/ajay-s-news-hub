@@ -8,7 +8,6 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import LoadingBar from "react-top-loading-bar";
 import { useTranslation } from "react-i18next";
 
-<<<<<<< HEAD
 
 const App = (props) => {
   const {t} = useTranslation();
@@ -19,13 +18,6 @@ const App = (props) => {
 
   const setProgress = (progress) => {
     setprogress(progress);
-=======
-export default class App extends Component {
-  static defaultProps = {
-    country: "in",
-    pagesize: 5,
-    category: "general",
->>>>>>> c41b3ce6a3a3d349dba0638ed2b24bb5a92bb4e9
   };
   const [progress, setprogress] = useState(0);
   // const [newsLang, setnewsLang] = useState('in');
